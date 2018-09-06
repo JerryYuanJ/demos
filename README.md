@@ -15,4 +15,4 @@ http-server ./
 
 # 演示
 
-![演示图]()
+![演示图](https://github.com/JerryYuanJ/pdf-viewer-demo/blob/master/assets/demo.gif)
