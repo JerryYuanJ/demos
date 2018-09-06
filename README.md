@@ -9,10 +9,11 @@
 本例需要运行在服务器环境下，直接以文件形式在浏览器打开不会有效果。建议使用 `http-server` :
 ```
 npm install http-server
-````
-然后切换到项目的根目录：
-
 ```
+切换到项目根目录下
+```
+cd ./01-pdf-online-viewer
+
 http-server ./
 ```
 直接打开链接即可
