@@ -1,22 +1,10 @@
 # 这是一个充满demo的项目，持续更新中
 
-## 01:pdf-online-viewer
-
-### 简介
-移动端在线预览pdf文件的一个小案例，使用了第三方库 `PDFJs`，并且添加了移动端左右上下滑动切换页面的效果。
-
-### 用法
-本例需要运行在服务器环境下，直接以文件形式在浏览器打开不会有效果。建议使用 `http-server` :
-```
-npm install http-server
-````
-然后切换到项目的根目录：
-
-```
-http-server ./
-```
-直接打开链接即可
-
-### 演示
-
-![演示图](https://github.com/JerryYuanJ/demos/01-pdf-online-viewer/blob/master/assets/demo.gif)
+### [01:pdf-online-viewer](https://github.com/JerryYuanJ/demos/tree/master/01-pdf-online-viewer)
+``
+使用 pdf.js 作为第三方库，结合移动端的手势滑动事件，实现了一个pdf在线预览的小demo
+``
+### [02:simple-csdn-ad-blocker](https://github.com/JerryYuanJ/demos/tree/master/02-simple-csdn-ad-blocker)
+``
+一个简易的chrome扩展应用(chrome extension), 代码很简单，主要实现了csdn网站博客详情页的广告屏蔽。
+``
