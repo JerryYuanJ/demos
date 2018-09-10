@@ -15,4 +15,7 @@
 查看源代码你会发现非常简单，就是使用 `javascript` 来控制广告所在DOM的显示隐藏。这个DOM是我自己在CSDN上找的，所以，如果它网站更新，可能这个插件就不管用了。
 
 ### 演示
+![演示图](https://github.com/JerryYuanJ/demos/blob/master/images/02.gif)
 
+### 博客
+[https://blog.csdn.net/qq_25324335/article/details/82595836](https://blog.csdn.net/qq_25324335/article/details/82595836)
