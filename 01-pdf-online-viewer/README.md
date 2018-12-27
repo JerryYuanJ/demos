@@ -15,4 +15,4 @@ http-server ./
 
 ### 演示
 
-![演示图](https://github.com/JerryYuanJ/demos/blob/master/01-pdf-online-viewer/assets/demo.gif)
+![演示图](https://github.com/JerryYuanJ/demos/blob/master/images/01.gif)
