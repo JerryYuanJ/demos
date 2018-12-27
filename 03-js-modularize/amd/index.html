@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- 使用script标签引入main -->
+  <!-- <script src="require.js" data-main="index"></script> -->
+
+  <!-- 引入require, 然后在script中使用require来加载依赖 -->
+  <script src="./require.js"></script>
+
+  <!-- 这会阻塞浏览器渲染 -->
+  <!-- <script src="./index.js"></script> -->
+  <title>AMD</title>
+  <style>
+    body{
+      font-size: 2rem;
+      color: blue;
+    }
+  </style>
+  <script>
+    require(['./index.js'], (m)=>{
+      m.hello()
+    })
+  </script>
+</head>
+<body>
+    This is AMD module test page.
+</body>
+</html>
