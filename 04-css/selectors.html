@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css3-01</title>
+  <style>
+    section{
+      margin-bottom: 2rem;
+    }
+    .main{
+      column-gap: 2em;
+      column-rule: thin dotted #999;
+      column-width: 12em;
+      /* columns: 4; */
+    }
+    .word-break{
+      height: 20em;
+      width: 10em;
+      word-wrap: break-word;
+      background-color: lightblue;
+    }
+    .text-overflow{
+      width: 30em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      background-color: lightgray
+    }
+    /* 属性选择器 */
+    [jerry]{
+      color: blue;
+    }
+    [jerry=good]{
+      color: green;
+    }
+    p[jerry=bad]{
+      color: pink;
+    }
+    /* 以...开头 */
+    [data-me^="hello"]{
+      color: chocolate
+    }
+    /* 以...结尾 */
+    [data-me$=world]{
+      font-weight: bold;
+    }
+    /* 包含 */
+    [data-me*=jerry]{
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+  <section class="main">
+    <p>helloworld</p>
+    <p>helloworld</p>
+    <p>helloworld</p>
+    <p>helloworld</p>
+  </section>
+  <section class="word-break">
+    <a href="#">https://www.google.com/search?q=helloworld&oq=helloworld&aqs=chrome..69i57j0l5.3314j0j7&sourceid=chrome&ie=UTF-8</a>
+  </section>
+  <section class="text-overflow">
+    text overflow text overflow text overflow text overflow text overflow text overflow text overflow text overflow 
+  </section>
+  <section>
+    <p jerry>attr selector</p>
+    <p jerry=good>good jerry</p>
+    <p jerry=bad>bad jerry</p>
+    <p data-me="hello world jerry">hello world jerry</p>
+    <p data-me="hello jerry">hello jerry</p>
+    <p data-me="hello hahah world">hello hahah world</p>
+  </section>
+</body>
+</html>

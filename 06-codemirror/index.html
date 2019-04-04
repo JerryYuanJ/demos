@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="codemirror-5.45.0/lib/codemirror.js"></script>
+  <link rel="stylesheet" href="codemirror-5.45.0/lib/codemirror.css">
+  <script src="codemirror-5.45.0/mode/javascript/javascript.js"></script>
+  <title>测试CodeMirror</title>
+
+</head>
+
+<body>
+
+</body>
+<script>
+  var myCodeMirror = CodeMirror(document.body, {
+    value: "function myScript(){return 100;}\n",
+    mode: "javascript"
+  });
+</script>
+
+</html>
