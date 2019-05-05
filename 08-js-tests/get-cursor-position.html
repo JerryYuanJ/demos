@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>获取光标的位置</title>
+</head>
+
+<body>
+  <input id="Javascript_example" name="one" type="text" value="Javascript example">
+</body>
+<script>
+  // function textbox() {
+  //   var ctl = document.getElementById('Javascript_example');
+  //   var startPos = ctl.selectionStart;
+  //   var endPos = ctl.selectionEnd;
+  //   alert(startPos + ", " + endPos);
+  // }
+  document.getElementById('Javascript_example').onclick = function(e) {
+    const start = e.srcElement.selectionStart
+    const end = e.srcElement.selectionEnd
+    alert(start, ',', end)
+  }
+</script>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <title>测试动画</title>
+</head>
+
+<body>
+  <div id="app">
+    <v-app id="inspire">
+      <div>
+        <v-container>
+
+          <v-text-field label="Input something" v-model="msg"></v-text-field>
+          <v-btn @click="addOne">ADD</v-btn>
+
+          <v-tabs v-model="active" color="cyan" slider-color="grey">
+            <v-tab v-for="n in 2" :key="n" ripple>
+              Item {{ n }}
+            </v-tab>
+            <v-tab-item key="0" style="height: 200px;">
+              <v-card flat>
+                <v-slide-y-transition group origin="center center">
+                  <ul v-for="(msg,index) in messages" :key="index">
+                    <li>{{msg}}</li>
+                  </ul>
+                </v-slide-y-transition>
+              </v-card>
+            </v-tab-item>
+            <v-tab-item key="1">
+              <v-card flat>
+                <v-card-text>2</v-card-text>
+              </v-card>
+            </v-tab-item>
+          </v-tabs>
+        </v-container>
+      </div>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          active: null,
+          messages: ['hello', 'world'],
+          msg: ''
+        }
+      },
+      methods: {
+        addOne() {
+          this.msg && this.messages.unshift(this.msg);
+        },
+        upper(msg) {
+          console.info(msg);
+          return (msg + '').toUpperCase();
+        },
+        onScroll() {
+          console.info('scroll')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

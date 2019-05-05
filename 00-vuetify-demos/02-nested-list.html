@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <title>测试嵌套菜单</title>
+</head>
+
+<body>
+  <div id="app">
+    <v-navigation-drawer value="true">
+      <v-list>
+
+        <!-- <v-list-group prepend-icon="account_circle" value="true">
+          <v-list-tile slot="activator">
+            <v-list-tile-title>Users</v-list-tile-title>
+          </v-list-tile>
+
+          <v-list-group no-action sub-group value="true">
+            <v-list-tile slot="activator">
+              <v-list-tile-title>Admin</v-list-tile-title>
+            </v-list-tile>
+
+            <v-list-tile v-for="(admin, i) in admins" :key="i" @click="">
+              <v-list-tile-title v-text="admin[0]"></v-list-tile-title>
+              <v-list-tile-action>
+                <v-icon v-text="admin[1]"></v-icon>
+              </v-list-tile-action>
+            </v-list-tile>
+          </v-list-group>
+
+          <v-list-group sub-group no-action>
+            <v-list-tile slot="activator">
+              <v-list-tile-title>Actions</v-list-tile-title>
+            </v-list-tile>
+            <v-list-tile v-for="(crud, i) in cruds" :key="i" @click="">
+              <v-list-tile-title v-text="crud[0]"></v-list-tile-title>
+              <v-list-tile-action>
+                <v-icon v-text="crud[1]"></v-icon>
+              </v-list-tile-action>
+            </v-list-tile>
+          </v-list-group>
+        </v-list-group> -->
+
+        <v-list-group v-for="item in json.data.tables">
+          <v-list-tile slot="activator">
+            <v-list-tile-title>{{ item.tag }}</v-list-tile-title>
+          </v-list-tile>
+
+          <v-list-group no-action sub-group v-for="table in item.tables">
+            <v-list-tile slot="activator">
+              <v-list-tile-title>{{ table.table_name }}</v-list-tile-title>
+            </v-list-tile>
+
+            <v-list-tile v-for="(field, i) in table.fields" :key="i" @click="">
+              <v-list-tile-title v-text="field.name"></v-list-tile-title>
+            </v-list-tile>
+          </v-list-group>
+
+        </v-list-group>
+
+
+      </v-list>
+    </v-navigation-drawer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script>
+    const json = {
+      "success": true,
+      "message": "",
+      "data": {
+        "tables": [
+          {
+            "tag": "revenue",
+            "tables": [
+              {
+                "table_name": "DailyRevenue",
+                "fields": [
+                  {
+                    "name": "date",
+                    "type": "date",
+                    "description": "date"
+                  },
+                  {
+                    "name": "department",
+                    "type": "string",
+                    "description": "department"
+                  },
+                  {
+                    "name": "ad_platform",
+                    "type": "string",
+                    "description": "ad platform"
+                  },
+                  {
+                    "name": "code",
+                    "type": "string",
+                    "description": "code"
+                  },
+                  {
+                    "name": "ad_unit_id",
+                    "type": "string",
+                    "description": "ad unit id"
+                  },
+                  {
+                    "name": "ad_unit_name",
+                    "type": "string",
+                    "description": "ad unit name"
+                  },
+                  {
+                    "name": "ad_type",
+                    "type": "string",
+                    "description": "ad type"
+                  },
+                  {
+                    "name": "requests",
+                    "type": "number",
+                    "description": "requests"
+                  },
+                  {
+                    "name": "fill",
+                    "type": "number",
+                    "description": "fill"
+                  },
+                  {
+                    "name": "impressions",
+                    "type": "number",
+                    "description": "impressions"
+                  },
+                  {
+                    "name": "clicks",
+                    "type": "number",
+                    "description": "clicks"
+                  },
+                  {
+                    "name": "revenue",
+                    "type": "number",
+                    "description": "revenue"
+                  }
+                ]
+              },
+              {
+                "table_name": "CountryRevenue",
+                "fields": [
+                  {
+                    "name": "date",
+                    "type": "date",
+                    "description": "date"
+                  },
+                  {
+                    "name": "department",
+                    "type": "string",
+                    "description": "department"
+                  },
+                  {
+                    "name": "ad_platform",
+                    "type": "string",
+                    "description": "ad platform"
+                  },
+                  {
+                    "name": "code",
+                    "type": "string",
+                    "description": "code"
+                  },
+                  {
+                    "name": "country",
+                    "type": "string",
+                    "description": "country"
+                  },
+                  {
+                    "name": "ad_unit_id",
+                    "type": "string",
+                    "description": "ad unit id"
+                  },
+                  {
+                    "name": "ad_unit_name",
+                    "type": "string",
+                    "description": "ad unit name"
+                  },
+                  {
+                    "name": "ad_type",
+                    "type": "string",
+                    "description": "ad type"
+                  },
+                  {
+                    "name": "requests",
+                    "type": "number",
+                    "description": "requests"
+                  },
+                  {
+                    "name": "fill",
+                    "type": "number",
+                    "description": "fill"
+                  },
+                  {
+                    "name": "impressions",
+                    "type": "number",
+                    "description": "impressions"
+                  },
+                  {
+                    "name": "clicks",
+                    "type": "number",
+                    "description": "clicks"
+                  },
+                  {
+                    "name": "revenue",
+                    "type": "number",
+                    "description": "revenue"
+                  }
+                ]
+              },
+              {
+                "table_name": "HourlyRevenue",
+                "fields": [
+                  {
+                    "name": "date",
+                    "type": "date",
+                    "description": "date"
+                  },
+                  {
+                    "name": "hour",
+                    "type": "number",
+                    "description": "hour"
+                  },
+                  {
+                    "name": "department",
+                    "type": "string",
+                    "description": "department"
+                  },
+                  {
+                    "name": "ad_platform",
+                    "type": "string",
+                    "description": "ad platform"
+                  },
+                  {
+                    "name": "code",
+                    "type": "string",
+                    "description": "code"
+                  },
+                  {
+                    "name": "ad_unit_id",
+                    "type": "string",
+                    "description": "ad unit id"
+                  },
+                  {
+                    "name": "ad_unit_name",
+                    "type": "string",
+                    "description": "ad unit name"
+                  },
+                  {
+                    "name": "ad_type",
+                    "type": "string",
+                    "description": "ad type"
+                  },
+                  {
+                    "name": "requests",
+                    "type": "number",
+                    "description": "requests"
+                  },
+                  {
+                    "name": "fill",
+                    "type": "number",
+                    "description": "fill"
+                  },
+                  {
+                    "name": "impressions",
+                    "type": "number",
+                    "description": "impressions"
+                  },
+                  {
+                    "name": "clicks",
+                    "type": "number",
+                    "description": "clicks"
+                  },
+                  {
+                    "name": "revenue",
+                    "type": "number",
+                    "description": "revenue"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "cost",
+            "tables": [
+              {
+                "table_name": "DailyCost",
+                "fields": [
+                  {
+                    "name": "date",
+                    "type": "date",
+                    "description": "date"
+                  },
+                  {
+                    "name": "department",
+                    "type": "string",
+                    "description": "department"
+                  },
+                  {
+                    "name": "ad_platform",
+                    "type": "string",
+                    "description": "ad platform"
+                  },
+                  {
+                    "name": "code",
+                    "type": "string",
+                    "description": "code"
+                  },
+                  {
+                    "name": "account_id",
+                    "type": "string",
+                    "description": "account id"
+                  },
+                  {
+                    "name": "account_name",
+                    "type": "string",
+                    "description": "account name"
+                  },
+                  {
+                    "name": "campaign_id",
+                    "type": "string",
+                    "description": "campaign id"
+                  },
+                  {
+                    "name": "conversions",
+                    "type": "number",
+                    "description": "conversions"
+                  },
+                  {
+                    "name": "impressions",
+                    "type": "number",
+                    "description": "impressions"
+                  },
+                  {
+                    "name": "clicks",
+                    "type": "number",
+                    "description": "clicks"
+                  },
+                  {
+                    "name": "cost",
+                    "type": "number",
+                    "description": "cost"
+                  },
+                  {
+                    "name": "service_fee",
+                    "type": "number",
+                    "description": "service_fee"
+                  },
+                  {
+                    "name": "open_account",
+                    "type": "number",
+                    "description": "\u5f00\u6237\u516c\u53f8"
+                  }
+                ]
+              },
+              {
+                "table_name": "CountryCost",
+                "fields": [
+                  {
+                    "name": "date",
+                    "type": "date",
+                    "description": "date"
+                  },
+                  {
+                    "name": "department",
+                    "type": "string",
+                    "description": "department"
+                  },
+                  {
+                    "name": "ad_platform",
+                    "type": "string",
+                    "description": "ad platform"
+                  },
+                  {
+                    "name": "code",
+                    "type": "string",
+                    "description": "code"
+                  },
+                  {
+                    "name": "country",
+                    "type": "string",
+                    "description": "country"
+                  },
+                  {
+                    "name": "account_id",
+                    "type": "string",
+                    "description": "account id"
+                  },
+                  {
+                    "name": "account_name",
+                    "type": "string",
+                    "description": "account name"
+                  },
+                  {
+                    "name": "campaign_id",
+                    "type": "string",
+                    "description": "campaign id"
+                  },
+                  {
+                    "name": "conversions",
+                    "type": "number",
+                    "description": "conversions"
+                  },
+                  {
+                    "name": "impressions",
+                    "type": "number",
+                    "description": "impressions"
+                  },
+                  {
+                    "name": "clicks",
+                    "type": "number",
+                    "description": "clicks"
+                  },
+                  {
+                    "name": "cost",
+                    "type": "number",
+                    "description": "cost"
+                  },
+                  {
+                    "name": "service_fee",
+                    "type": "number",
+                    "description": "service_fee"
+                  },
+                  {
+                    "name": "open_account",
+                    "type": "number",
+                    "description": "\u5f00\u6237\u516c\u53f8"
+                  }
+                ]
+              },
+              {
+                "table_name": "HourlyCost",
+                "fields": [
+                  {
+                    "name": "date",
+                    "type": "date",
+                    "description": "date"
+                  },
+                  {
+                    "name": "hour",
+                    "type": "number",
+                    "description": "hour"
+                  },
+                  {
+                    "name": "department",
+                    "type": "string",
+                    "description": "department"
+                  },
+                  {
+                    "name": "ad_platform",
+                    "type": "string",
+                    "description": "ad platform"
+                  },
+                  {
+                    "name": "code",
+                    "type": "string",
+                    "description": "code"
+                  },
+                  {
+                    "name": "account_id",
+                    "type": "string",
+                    "description": "account id"
+                  },
+                  {
+                    "name": "account_name",
+                    "type": "string",
+                    "description": "account name"
+                  },
+                  {
+                    "name": "campaign_id",
+                    "type": "string",
+                    "description": "campaign id"
+                  },
+                  {
+                    "name": "conversions",
+                    "type": "number",
+                    "description": "conversions"
+                  },
+                  {
+                    "name": "impressions",
+                    "type": "number",
+                    "description": "impressions"
+                  },
+                  {
+                    "name": "clicks",
+                    "type": "number",
+                    "description": "clicks"
+                  },
+                  {
+                    "name": "cost",
+                    "type": "number",
+                    "description": "cost"
+                  },
+                  {
+                    "name": "service_fee",
+                    "type": "number",
+                    "description": "service_fee"
+                  },
+                  {
+                    "name": "open_account",
+                    "type": "number",
+                    "description": "\u5f00\u6237\u516c\u53f8"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "revenue",
+            "tables": [
+              {
+                "table_name": "DailyAfInstall",
+                "fields": [
+                  {
+                    "name": "date",
+                    "type": "date",
+                    "description": "date"
+                  },
+                  {
+                    "name": "department",
+                    "type": "string",
+                    "description": "department"
+                  },
+                  {
+                    "name": "code",
+                    "type": "string",
+                    "description": "code"
+                  },
+                  {
+                    "name": "dau",
+                    "type": "number",
+                    "description": "dau"
+                  },
+                  {
+                    "name": "dnu",
+                    "type": "number",
+                    "description": "dnu"
+                  }
+                ]
+              },
+              {
+                "table_name": "CountryAfInstall",
+                "fields": [
+                  {
+                    "name": "date",
+                    "type": "date",
+                    "description": "date"
+                  },
+                  {
+                    "name": "department",
+                    "type": "string",
+                    "description": "department"
+                  },
+                  {
+                    "name": "code",
+                    "type": "string",
+                    "description": "code"
+                  },
+                  {
+                    "name": "country",
+                    "type": "string",
+                    "description": "country"
+                  },
+                  {
+                    "name": "dau",
+                    "type": "number",
+                    "description": "dau"
+                  },
+                  {
+                    "name": "dnu",
+                    "type": "number",
+                    "description": "dnu"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+    new Vue({
+      el: '#app',
+      data: () => ({
+        admins: [
+          ['Management', 'people_outline'],
+          ['Settings', 'settings']
+        ],
+        cruds: [
+          ['Create', 'add'],
+          ['Read', 'insert_drive_file'],
+          ['Update', 'update'],
+          ['Delete', 'delete']
+        ],
+        json: json
+      })
+    })
+  </script>
+</body>
+
+</html>

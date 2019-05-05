@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <title>测试滚动</title>
+</head>
+
+<body>
+  <div id="app">
+    <v-app id="inspire">
+      <div>
+        <v-tabs v-model="active">
+          <v-tab v-for="n in 2" :key="n" ripple>
+            Item {{ n }}
+          </v-tab>
+          <v-tab-item v-for="(msg, item) in messages" :key="msg">
+            <div style="max-height: 400px; overflow-y: scroll" id="st">
+              <div id="first">1</div>
+              <v-card flat style="height: 800px" v-scroll:#st="onScroll">
+                <v-card-text>{{ upper(msg) }}</v-card-text>
+              </v-card>
+            </div>
+          </v-tab-item>
+
+        </v-tabs>
+
+        <div class="text-xs-center mt-3">
+          <v-btn @click="scrollTop">滚动到顶部</v-btn>
+        </div>
+      </div>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          active: null,
+          messages: ['hello', 'world']
+        }
+      },
+      methods: {
+        scrollTop() {
+          this.$vuetify.goTo('#first')
+        },
+        upper(msg) {
+          console.info(msg);
+          return (msg+'').toUpperCase();
+        },
+        onScroll() {
+          console.info('scroll')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

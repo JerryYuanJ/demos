@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <title>测试tab的一个bug</title>
+</head>
+
+<body>
+  <div id="app">
+    <v-app id="inspire">
+      <div>
+        <v-tabs v-model="active">
+          <v-tab v-for="n in 2" :key="n" ripple>
+            Item {{ n }}
+          </v-tab>
+
+          <v-tab-item v-for="(msg, item) in messages" :key="msg">
+            <v-card flat>
+              <v-card-text>{{ upper(msg) }}</v-card-text>
+            </v-card>
+          </v-tab-item>
+
+        </v-tabs>
+
+        <div class="text-xs-center mt-3">
+          <v-btn @click="next">next tab</v-btn>
+        </div>
+      </div>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          active: null,
+          messages: ['hello', 'world']
+        }
+      },
+      methods: {
+        next() {
+          const active = parseInt(this.active)
+          this.active = (active < 2 ? active + 1 : 0)
+        },
+        upper(msg) {
+          console.info(msg);
+          return (msg+'').toUpperCase();
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

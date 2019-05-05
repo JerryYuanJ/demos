@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+    <div id="app">
+      <button @click='addUser'>add 100</button>
+      <el-table
+      :data="tableData"
+      border
+      style="width: 100%">
+      <el-table-column
+        prop="date"
+        label="日期"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="name"
+        label="姓名"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="address"
+        label="地址">
+      </el-table-column>
+    </el-table>
+  </div>
+</body>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script>
+    function genData(){
+      let users = []
+      for(let i = 0; i < 100; i++) {
+        users.push({
+          id: i,
+          date:  `201${i}-i-i`,
+          name: 'Test' + i,
+          address: i % 2 == 0 ? '安徽合肥': '安徽巢湖'
+        })
+      }
+      return users
+    }
+
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { 
+          tableData: []
+        }
+      },
+      methods: {
+        addUser(){
+          var count = 1
+          var id = setInterval(()=>{
+            if(count>100){
+              clearInterval(id)
+            }
+            count++
+            for(let i = 0; i < 100; i++) {
+              this.tableData.push({
+                id: i,
+                date:  `201${i}-i-i`,
+                name: 'Test' + i,
+                address: i % 2 == 0 ? '安徽合肥': '安徽巢湖'
+              })
+            }
+            console.info(this.tableData.length)
+          },200)
+        }
+      }
+    })
+  </script>
+</html>

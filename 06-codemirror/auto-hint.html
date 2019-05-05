@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="codemirror-5.45.0/lib/codemirror.js"></script>
+  <link rel="stylesheet" href="codemirror-5.45.0/lib/codemirror.css">
+  <link rel="stylesheet" href="./codemirror-5.45.0/addon/hint/show-hint.css"></link>
+  <script src="codemirror-5.45.0/mode/javascript/javascript.js"></script>
+  <script src="./codemirror-5.45.0/mode/sql/sql.js"></script>
+  <script src="./codemirror-5.45.0/addon/hint/show-hint.js"></script>
+  <script src="./codemirror-5.45.0/addon/hint/sql-hint.js"></script>
+  <title>测试自动补全</title>
+  <style>
+    .CodeMirror {
+      border: 1px solid #eaeaea;
+      background-color: #eaeaea55;
+      height: 200px;
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <textarea id="input-box">
+
+  </textarea>
+</body>
+<script>
+  var doc = CodeMirror.fromTextArea(document.getElementById('input-box'), {
+    mode: 'text/x-mariadb'
+  })
+
+  doc.on('keyup', () => {
+    if (!doc.state.completionActive) {
+        const keycode = event.keyCode;
+        // A-Z, 0-9, enter, space
+        if ((keycode <= 57 && keycode >= 48) || (keycode <= 90 && keycode >= 65) || keycode === 219) {
+          snippet()
+        }
+      }
+  })
+
+  const sysKeywords = Object.keys(CodeMirror.resolveMode('text/x-mariadb').keywords);
+
+  function getTableNames(sql) {
+    
+  }
+
+  function isSimpleCase() {
+
+  }
+  
+  function snippet() {
+    const codemirror  = doc;
+    CodeMirror.showHint(codemirror, function () {
+      const cursor = codemirror.getCursor()
+      const token = codemirror.getTokenAt(cursor)
+      const start = token.start
+      const end = cursor.ch
+      const line = cursor.line
+      const currentWord = token.string
+
+      // table first
+      const tables = {
+        '[test-01]': ['name1', 'age1', 'gender1', 'address1', 'phone1'],
+        '[test-02]': ['name2', 'age2', 'gender2', 'address2', 'phone2']
+      }
+
+      const tableNames = Object.keys(tables);
+
+      const matchedTable = tableNames.filter(name => {
+        return name.indexOf(currentWord) >= 0
+      })
+
+      // then the keyword
+      const sysList = sysKeywords.filter(function (item) {
+        return item.indexOf(currentWord) >= 0
+      })
+      
+      const final = [...matchedTable, ...sysList];
+
+      return {
+        list: final.length ? final : [],
+        from: CodeMirror.Pos(line, start),
+        to: CodeMirror.Pos(line, end)
+      }
+    }, { completeSingle: false })
+    // CodeMirror.showHint(doc, CodeMirror.hint.sql, {
+    //   tables: {
+    //     '[test-01]': ['name1', 'age1', 'gender1', 'address1', 'phone1'],
+    //     '[test-02]': ['name2', 'age2', 'gender2', 'address2', 'phone2']
+    //   },
+    // });
+  }
+
+</script>
+</html>

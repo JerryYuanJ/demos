@@ -77,12 +77,26 @@ window.onload = function() {
     lineNumbers: true,
     matchBrackets : true,
     autofocus: true,
-    extraKeys: {"Ctrl-Space": "autocomplete"},
+    extraKeys: {"Ctrl-E": "autocomplete"},
     hintOptions: {tables: {
       users: ["name", "score", "birthDate"],
       countries: ["name", "population", "size"]
     }}
   });
+
+  // updated by jerry: auto hint
+  // window.editor.on('keyup', (e, key) => {
+  //   const keycode = key.keyCode
+  //   console.info(keycode)
+  //   if ((keycode <=57 && keycode >= 48) || (keycode <=90 && keycode >= 65) || keycode ===13 || keycode ===32) {
+  //     CodeMirror.showHint(window.editor, CodeMirror.hint.sql, { 
+  //       tables: {
+  //           "table1": [ "col_A", "col_B", "col_C" ],
+  //           "table2": [ "other_columns1", "other_columns2" ]
+  //       }
+  //   } );
+  //   }
+  // })
 };
 </script>
 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <title>测试CodeMirror与Vue的应用</title>
+</head>
+
+<body>
+  <div id="app">
+    <v-container class="grid-list-md align-start">
+      <v-layout class="row wrap">
+        <v-flex class="xs3">
+          <v-card>
+            <v-list style="height: 90vh">
+              <v-list-group v-for="item in items" :key="item.title" v-model="item.active">
+
+                <template v-slot:activator>
+                  <v-list-tile>
+                    <v-list-tile-content>
+                      <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                    </v-list-tile-content>
+                  </v-list-tile>
+                </template>
+
+                <v-list-tile v-for="subItem in item.items" :key="subItem.title" @click="">
+                  <v-list-tile-content>
+                    <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
+                  </v-list-tile-content>
+
+                </v-list-tile>
+
+              </v-list-group>
+            </v-list>
+          </v-card>
+        </v-flex>
+        <v-flex xs9>
+          <v-card class="sql-box">
+            <textarea name="sql" id="sql" rows="10" 
+                      style="resize: none; width: 100%; outline: none; border: 1px solid #eaeaea;"></textarea>
+            <div style="display: flex" class="align-center justify-space-between">
+              <v-btn outline color="info">Save</v-btn>
+              <v-btn>Run</v-btn>
+            </div>
+          </v-card>
+          <v-card style="margin-top: 5px; height: 50%;">
+            <v-tabs v-model="active" color="cyan" dark slider-color="yellow">
+              <v-tab v-for="n in 3" :key="n" ripple>
+                Item {{ n }}
+
+              </v-tab>
+              <v-tab-item v-for="n in 3" :key="n">
+                <v-card flat>
+                  <v-card-text>{{ text }}</v-card-text>
+                </v-card>
+              </v-tab-item>
+            </v-tabs>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          active: null,
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+          items: [
+            {
+              action: 'local_activity',
+              title: 'Attractions',
+              items: [
+                { title: 'List Item' }
+              ]
+            },
+            {
+              action: 'restaurant',
+              title: 'Dining',
+              active: true,
+              items: [
+                { title: 'Breakfast & brunch' },
+                { title: 'New American' },
+                { title: 'Sushi' }
+              ]
+            },
+            {
+              action: 'school',
+              title: 'Education',
+              items: [
+                { title: 'List Item' }
+              ]
+            },
+            {
+              action: 'directions_run',
+              title: 'Family',
+              items: [
+                { title: 'List Item' }
+              ]
+            },
+            {
+              action: 'healing',
+              title: 'Health',
+              items: [
+                { title: 'List Item' }
+              ]
+            },
+            {
+              action: 'content_cut',
+              title: 'Office',
+              items: [
+                { title: 'List Item' }
+              ]
+            },
+            {
+              action: 'local_offer',
+              title: 'Promotions',
+              items: [
+                { title: 'List Item' }
+              ]
+            }
+          ]
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -8,18 +8,91 @@
   <script src="codemirror-5.45.0/lib/codemirror.js"></script>
   <link rel="stylesheet" href="codemirror-5.45.0/lib/codemirror.css">
   <script src="codemirror-5.45.0/mode/javascript/javascript.js"></script>
+  <script src="./codemirror-5.45.0/mode/sql/sql.js"></script>
   <title>测试CodeMirror</title>
+  <style>
+    ul .CodeMirror, #input-box .CodeMirror{
+      height: auto;
+      background-color: #eaeaea;
+    }
 
+    .values span{
+      background-color: lightgreen
+    }
+  </style>
 </head>
 
 <body>
+  <div id="input-box">
 
+  </div>
+  <div class="values">
+    <span>name</span>
+    <span>age</span>
+    <span>school</span>
+  </div>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
 </body>
 <script>
-  var myCodeMirror = CodeMirror(document.body, {
-    value: "function myScript(){return 100;}\n",
-    mode: "javascript"
-  });
+  
+  const codeList = [
+    'function test(){return document.getElementsByTagName("name")}',
+    'var a = 2',
+    'if( 1 > 2) {} else {}'
+  ]
+
+  var lis = document.getElementsByTagName('li')
+  lis = Array.from(lis)
+  lis.forEach((li,index) => {
+      CodeMirror(li, {
+        mode: "javascript",
+        value: codeList[index],
+        readOnly: 'nocursor'
+    });
+  })
+
+  var doc = CodeMirror(document.getElementById('input-box'), {
+    mode: 'text/x-mariadb',
+    value: 'select name\n from user'
+  })
+
+  const value = document.getElementsByClassName('values')[0]
+  value.onclick = function(item){
+    const name = item.target.innerText
+    insertContent(name)
+  }
+
+  function insertContent(content){
+    const {line, ch} = doc.getCursor()
+    const currentLine = doc.getLine(line)
+    let contentVal = doc.getValue()
+    // to avoid empty line case
+    if(currentLine.trim() == '') {
+      doc.setValue(contentVal + ` ${content},`)
+      doc.setCursor(line, ch + content.length + 3)
+      return
+    }
+    // update current line
+    let newVal = spliceSlice(currentLine, ch, 0, ` ${content}, `)
+    // update whole content
+    const result = contentVal.replace(currentLine, newVal)
+    doc.setValue(result)
+    doc.setCursor(line, ch + content.length + 3)
+  }
+
+  function spliceSlice(str, index, count, add) {
+    if (index < 0) {
+      index = str.length + index
+      if (index < 0) {
+        index = 0
+      }
+    }
+    return str.slice(0, index) + (add || "") + str.slice(index + count)
+  }
 </script>
 
 </html>
